@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Box</title>
+    <!--TODO: fix icon -->
+    <link rel="icon" href="box_icon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="download.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">FileBox</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="upload.html">Upload</a></li>
+          <li class="active"><a href="download.html">Download</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Files</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Log Out</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Download</h2>
+      <form>
+        <p>File Visibility:</p>
+        <p><input type="radio" name="df_vis" value="df_vis_sel_pub" checked> Public</p>
+        <p><input type="radio" name="df_vis" value="df_vis_sel_pri"> Private</p>
+
+        <div id="df_vis_pub">
+          <p>PUBLIC FILE</p>
+        </div>
+
+        <div id="df_vis_pri" style="display:none">
+          <p>PRIVATE FILE</p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
