@@ -39,15 +39,21 @@
         <p>File Visibility:</p>
         <input type="radio" name="df_vis" value="df_vis_sel_pub" onclick="df_vis_sel(0)" checked> Public <br />
         <input type="radio" name="df_vis" value="df_vis_sel_pri" onclick="df_vis_sel(1)" > Private <br />
-
         <div id="df_vis_pub">
           <p>PUBLIC FILE</p>
-
+          <label for="df_pub_id">Public ID</label>
+          <input type="text" name="df_pub_id">
         </div>
 
         <div id="df_vis_pri" style="display:none">
           <p>PRIVATE FILE</p>
+          <label for="df_pri_id">Private ID</label>
+          <input type="text" name="df_pri_id"> <br />
+          <label for="df_pri_owner">Owner ID</label>
+          <input type="text" name="df_pri_owner">
         </div>
+
+        <input type="submit">
       </form>
     </div>
   </body>
