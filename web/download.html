@@ -37,11 +37,12 @@
       <h2>Download</h2>
       <form>
         <p>File Visibility:</p>
-        <p><input type="radio" name="df_vis" value="df_vis_sel_pub" checked> Public</p>
-        <p><input type="radio" name="df_vis" value="df_vis_sel_pri"> Private</p>
+        <input type="radio" name="df_vis" value="df_vis_sel_pub" onclick="df_vis_sel(0)" checked> Public <br />
+        <input type="radio" name="df_vis" value="df_vis_sel_pri" onclick="df_vis_sel(1)" > Private <br />
 
         <div id="df_vis_pub">
           <p>PUBLIC FILE</p>
+
         </div>
 
         <div id="df_vis_pri" style="display:none">

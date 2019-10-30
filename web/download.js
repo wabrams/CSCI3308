@@ -1,21 +1,21 @@
-var df_vis = document.getElementsByName("df_vis");
-var df_vis_public =  document.getElementById("df_vis_pub");
-var df_vis_private =  document.getElementById("df_vis_pri");
+console.log("script loaded!");
 
-for(var i = 0; i < df_vis.length; i++)
+function df_vis_sel(sel_vis)
 {
-  df_vis[i].onclick = function()
+  // console.log("clicked!");
+  var df_vis_public =  document.getElementById("df_vis_pub");
+  var df_vis_private =  document.getElementById("df_vis_pri");
+
+  if(sel_vis == 0) //public
   {
-    var val = this.value;
-    if(val == 'df_vis_sel_pub')
-    {
-      df_vis_public.style.display = 'block';   // show
-      df_vis_private.style.display = 'none';// hide
-    }
-    else if(val == 'df_vis_sel_pri')
-    {
-       df_vis_public.style.display = 'none';
-       df_vis_private.style.display = 'block';
-    }
+    // console.log("public!");
+    df_vis_public.style.display = 'block';   // show
+    df_vis_private.style.display = 'none';// hide
+  }
+  else if(sel_vis == 1)
+  {
+     // console.log("private");
+     df_vis_public.style.display = 'none';
+     df_vis_private.style.display = 'block';
   }
 }
