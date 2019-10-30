@@ -12,7 +12,7 @@ open source, low functionality dropbox clone.
 | Name | Github |
 | ----- | ----- |
 | Will Abrams| wabrams |
-| Artem | artem690 |
+| Artem Nekrasov | artem690 |
 | Ford Mulligan | fpmull |
 | Jessie Ryce | jessieryce |
 | Isabell Deak | Isabelldeak |
