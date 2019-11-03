@@ -1,6 +1,7 @@
 body
 {
-  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(pic1.jpg);
+  background-image: url(gold.jpg);
+
   heigh: 100vh;
   bakcground-size: cover;
   background-position: center;
@@ -8,10 +9,13 @@ body
 
 #main-header
 {
-    background-color: rgba(3,100,30,0.4);
-    color: white;
+    font-family: "Roboto", sans-serif;
+    background-color: rgba(0, 0, 0, 0.90);
+    color: #EFCA36;
     padding: 0 0 5%;
     margin: auto;
+    font-size: 20px;
+    text-align: center;
 }
 .main-header h1
 {
@@ -30,7 +34,7 @@ body
 {
   position: relative;
   z-index: 1;
-  background: rgba(3,100,30,0.4); /*change color*/
+  background: rgba(0, 0, 0, 0.80); /*change color*/
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
@@ -54,31 +58,31 @@ body
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4caf50;
+  background: #EFCA36;
   width: 100%;
   border: 0;
   padding: 15px;
-  color: #ffffff;
+  color: black;
   font-size: 15px;
   cursor: pointer;
 }
 
 .form button:hover,.form button:active
 {
-  background: #43a047;
+  background: #FEF67C;
 }
 
 .form .message
 {
   margin: 15px 0 0;
-  color: white;
+  color: #EFCA36;
   fort-size: 12px;
 
 }
 
 .form .message a
 {
-  color: #4caf50;
+  color: #EFCA36;
   text-decoration: none;
 
 }
@@ -86,4 +90,13 @@ body
 .form .register-form
 {
   display: none;
+}
+
+#main-footer
+{
+    font-family: "Roboto", sans-serif;
+    color:#EFCA36;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
 }
