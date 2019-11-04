@@ -36,7 +36,12 @@
         <form>
           <p>single file upload: <input type="file"></p>
           <p>multiple file upload: <input type="file" name="myFile" multiple></p>
-          <input type="submit" value="Upload">
+          <input type="submit" value="Upload" onclick="showAlert()">
+          <script type="text/javascript">
+            function showAlert() {
+              alert("Upload is complete.");
+            }
+          </script>
         </form>
     </div>
   </body>
