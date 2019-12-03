@@ -65,8 +65,11 @@ var server = http.createServer(function(req, res)
   else
   {
     //TODO: err page goes here
-    res.setHeader("Content-Type", "text/html");
-    // res.end("<p>Hello World. Request counter: " + counter + ".</p>");
+    fs.readFile("error.html", function(err, text)
+    {
+      res.setHeader("Content-Type", "text/html");
+      res.end(text);
+    });
   }
 });
 
