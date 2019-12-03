@@ -9,18 +9,21 @@ const request = require('request');
 function collectRequestData(request, callback)
 {
   console.log("getting data");
-    const FORM_URLENCODED = 'application/x-www-form-urlencoded';    if(request.headers['content-type'] === FORM_URLENCODED) {
-        let body = '';
-        request.on('data', chunk => {
-            body += chunk.toString();
-        });
-        request.on('end', () => {
-            callback(parse(body));
-        });
-    }
-    else {
-        callback(null);
-    }
+  const FORM_URLENCODED = 'application/x-www-form-urlencoded';
+  if(request.headers['content-type'] === FORM_URLENCODED)
+  {
+    let body = '';
+    request.on('data', chunk => {
+      body += chunk.toString();
+    });
+    request.on('end', () => {
+      callback(parse(body));
+    });
+  }
+  else
+  {
+    callback(null);
+  }
 }
 
 var server = http.createServer(function(req, res)
