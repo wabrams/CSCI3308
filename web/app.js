@@ -1,6 +1,5 @@
 var http = require("http");
 var fs = require('fs');
-var mysql = require("mysql");
 var port = 3000;
 var serverUrl = "127.0.0.1";
 var counter = 0;
@@ -44,11 +43,11 @@ var server = http.createServer(function(req, res)
   }
 });
 
+var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost", //localhost
-  user: "fbox",
-  password: "fbox1234",
-  port: "3306"
+  user: "root",
+  password: "filebox1234",
 });
 con.connect(function(err) {
   if (err) throw err;
