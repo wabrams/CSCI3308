@@ -17,10 +17,10 @@
           <a class="navbar-brand" href="#">FileBox</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="upload.html">Upload</a></li>
           <li><a href="download.html">Download</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="acoount.html">Account <span class="caret"></span></a>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="account.html" class="active">Account <span class="caret"></span></a>
             <ul class="dropdown-menu">
             <li><a href="account.html">Account</a></li>
               <li><a href="#">Files</a></li>
@@ -28,14 +28,29 @@
               <li><a href="#">Log Out</a></li>
             </ul>
           </li>
-
         </ul>
       </div>
     </nav>
 
     <div class="container">
-      <h3>FileBox</h3>
-        <p>welcome to FileBox, we hope you enjoy the ease of use for managing your files</p>
+      <h2>Your Account</h2>
+      <form method="POST">
+          <div>
+              <label>First Name</label>
+              <input type="text" name="firstName">
+          </div>
+          <br>
+          <div>
+              <label>Last Name</label>
+              <input type="text" name="lastName">
+          </div>
+          <br>
+          <div>
+              <label>Email</label>
+              <input type="email" name="email">
+          </div>
+          <br>
+      </form>
     </div>
   </body>
 </html>
