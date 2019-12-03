@@ -18,9 +18,9 @@
         </div>
         <ul class="nav navbar-nav">
           <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="upload.html">Upload</a></li>
+          <li><a href="upload.html">Upload</a></li>
           <li><a href="download.html">Download</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="account.html">Account <span class="caret"></span></a>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="account.html" class="active">Account <span class="caret"></span></a>
             <ul class="dropdown-menu">
             <li><a href="account.html">Account</a></li>
               <li><a href="#">Files</a></li>
@@ -33,17 +33,24 @@
     </nav>
 
     <div class="container">
-      <h2>Upload</h2>
-        <form>
-          <p>single file upload: <input type="file"></p>
-          <p>multiple file upload: <input type="file" name="myFile" multiple></p>
-          <input type="submit" value="Upload" onclick="showAlert()">
-          <script type="text/javascript">
-            function showAlert() {
-              alert("Upload is complete.");
-            }
-          </script>
-        </form>
+      <h2>Your Account</h2>
+      <form method="POST">
+          <div>
+              <label>First Name</label>
+              <input type="text" name="firstName">
+          </div>
+          <br>
+          <div>
+              <label>Last Name</label>
+              <input type="text" name="lastName">
+          </div>
+          <br>
+          <div>
+              <label>Email</label>
+              <input type="email" name="email">
+          </div>
+          <br>
+      </form>
     </div>
   </body>
 </html>
