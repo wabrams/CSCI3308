@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `csci3308`.`Users` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `userID` CHAR(16) NOT NULL COMMENT 'GUID',
+  `userID` INT NOT NULL AUTO_INCREMENT COMMENT 'GUID',
   PRIMARY KEY (`userID`));
 
 CREATE UNIQUE INDEX `email_UNIQUE` ON `csci3308`.`Users` (`email` ASC) VISIBLE;
@@ -34,7 +34,7 @@ CREATE UNIQUE INDEX `username_UNIQUE` ON `csci3308`.`Users` (`username` ASC) VIS
 -- Table `csci3308`.`Files`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `csci3308`.`Files` (
-  `fileID` CHAR(16) NOT NULL,
+  `fileID` INT NOT NULL AUTO_INCREMENT,
   `owner` CHAR(16) NOT NULL,
   `uploaded` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `filePath` VARCHAR(255) NOT NULL,
