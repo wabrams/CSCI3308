@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,9 +20,8 @@
           <li><a href="index.html">Home</a></li>
           <li class="active"><a href="upload.html">Upload</a></li>
           <li><a href="download.html">Download</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="account.html">Account <span class="caret"></span></a>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
             <ul class="dropdown-menu">
-            <li><a href="account.html">Account</a></li>
               <li><a href="#">Files</a></li>
               <li><a href="#">Settings</a></li>
               <li><a href="#">Log Out</a></li>
@@ -35,10 +33,10 @@
 
     <div class="container">
       <h2>Upload</h2>
-        <form>
+        <form action="/" method="post">
           <p>single file upload: <input type="file"></p>
-          <p>multiple file upload: <input type="file" name="myFile" multiple></p>
-          <input type="submit" value="Upload" onclick="showAlert()">
+          <!-- <p>multiple file upload: <input type="file" name="myFile" multiple></p> -->
+          <input type="submit" value="Upload" name="file_upload" onclick="showAlert()">
           <script type="text/javascript">
             function showAlert() {
               alert("Upload is complete.");
