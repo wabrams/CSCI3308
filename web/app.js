@@ -27,7 +27,10 @@ var server = http.createServer(function(req, res)
 {
   counter++;
   console.log("Request: " + req.url + " (" + counter + ")");
+  if (req.method == "/download/list")
+  {
 
+  }
   if (req.url == '/upload/upf')
   {
     var form = new formidable.IncomingForm();

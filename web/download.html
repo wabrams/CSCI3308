@@ -10,8 +10,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="download.js"></script>
+    <script>
+      function fillTable()
+      {
+        
+        document.getElementById("dtable-body").innerHTML = "<tr><td>foo</td><td>bar</td></tr>";
+      }
+    </script>
   </head>
-  <body>
+  <body onload="fillTable()">
     <!--Navigation bar-->
     <div id="nav-placeholder"></div>
     <script>
@@ -48,13 +55,12 @@
     <br>
     <table style="width:70%; margin-left: 15%; margin-right: 15%;" class="table table-bordered" id="table-tag">
       <thead>
-        <tr id="header">
+        <tr id="dtable-header">
           <th scope="col">ID</th>
           <th scope="col">Name</th>
-          <th scope="col">Size</th>
         </tr>
       </thead>
-      <tbody id="table-body">
+      <tbody id="dtable-body">
 
       </tbody>
     </table>
