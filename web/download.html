@@ -10,32 +10,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="download.js"></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">FileBox</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="upload.html">Upload</a></li>
-          <li class="active"><a href="download.html">Download</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="account.html">Account <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-            <li><a href="account.html">Account</a></li>
-              <li><a href="files.html">Files</a></li>
-              <li><a href="setting.html">Settings</a></li>
-              <li><a href="#">Log Out</a></li>
-            </ul>
-          </li>
+    <script>
+      function fillTable()
+      {
 
-        </ul>
-      </div>
-    </nav>
+        document.getElementById("dtable-body").innerHTML = "<tr><td>foo</td><td>bar</td></tr>";
+      }
+    </script>
+  </head>
+  <body onload="fillTable()">
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+    <script>
+    $(function(){
+      $("#nav-placeholder").load("nav.html");
+    });
+    </script>
 
     <div class="container">
-      <h2>Download</h2>
+      <h1 style="font-size: 100px">Download</h1>
       <form>
         <p>File Visibility:</p>
         <input type="radio" name="df_vis" value="df_vis_sel_pub" onclick="df_vis_sel(0)" checked> Public <br />
@@ -59,52 +52,29 @@
     </div>
 
     <br>
-    <table style="width:70%; margin-left: 15%; margin-right: 15%;" class="table table-bordered">
+    <table style="width:70%; margin-left: 15%; margin-right: 15%;" class="table table-bordered" id="table-tag">
       <thead>
-        <tr id="fid0">
+        <tr id="dtable-header">
           <th scope="col">ID</th>
           <th scope="col">Name</th>
-          <th scope="col">Size</th>
-          <th scope="col">Date</th>
-          <th scope="col">More</th>
+          <th scope="col">Link</th>
         </tr>
       </thead>
-      <tbody>
-        <tr id="fid1">
+      <tbody id="dtable-body">
+        <tr>
           <td>1</td>
           <td>*filename*</td>
-          <td>40KB</td>
-          <td>January 5</td>
-          <td class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-            </div>
-          </td>
+          <td><a href="#">Download</a></td>
         </tr>
-        <tr id="fid2">
+        <tr>
           <td>2</td>
           <td>*filename*</td>
-          <td>45KB</td>
-          <td>February 5</td>
-          <td class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-            </div>
-          </td>
+          <td><a href="#">Download</a></td>
         </tr>
-        <tr id="fid3">
+        <tr>
           <td>3</td>
           <td>*filename*</td>
-          <td>50KB</td>
-          <td>March 5</td>
-          <td class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-            </div>
-          </td>
+          <td><a href="#">Download</a></td>
         </tr>
       </tbody>
     </table>
