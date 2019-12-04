@@ -76,9 +76,25 @@ var server = http.createServer(function(req, res)
       res.setHeader("Content-Type", "text/html");
       res.end(text);
     });
-    con.query("SELECT * FROM files;", function (err, result, fields) {
+    con.query("SELECT * FROM files;", function (err, result, fields)
+    {
       if (err) throw err;
-      console.log(result);
+
+      var n = result.length;
+      for (var i = 0; i < n; i++)
+      {
+          console.log(result[i].name);
+      }
+      //so we can get the mysql here,
+      //but we can't write to
+    });
+  }
+  else if(req.url == "/login")
+  {
+    fs.readFile("login.html", function(err, text)
+    {
+      res.setHeader("Content-Type", "text/html");
+      res.end(text);
     });
   }
   else if(req.url == "/nav.html")
@@ -89,7 +105,7 @@ var server = http.createServer(function(req, res)
       res.end(text);
     });
   }
-  else if(req.url == "/account.html")
+  else if(req.url == "/account")
   {
     fs.readFile("account.html", function(err, text)
     {
