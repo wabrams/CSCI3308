@@ -87,6 +87,20 @@ con.connect(function(err) {
 console.log("Starting web server at " + serverUrl + ":" + port);
 server.listen(port, serverUrl);
 
-/*app.get('/files', function(req, res) {
-  var query = 'select file_id, file_path'
-})*/
+app.get('/files', function(req, res) {
+  var query = 'select fileID, filePath, fileSize, owner from Files;'
+  db.any(query)
+    .then(function (rows) {
+      res.render('files',{
+        my_title: "All Files",
+        data: rows
+      })
+    })
+    .catch(function (err) {
+      request.flash('error', err);
+      Response.render('files',{
+        title: 'All Files',
+        data: ''
+      })
+    })
+})
