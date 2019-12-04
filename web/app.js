@@ -119,7 +119,7 @@ var server = http.createServer(function(req, res)
       res.setHeader("Content-Type", "text/html");
       res.end(text);
     });
-    // con.query("SELECT * FROM files;", function (err, result, fields)
+    //con.query("SELECT * FROM files;", function (err, result, fields)
     // {
     //   if (err) throw err;
     //
