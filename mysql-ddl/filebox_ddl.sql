@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `csci3308`.`Files` (
   `owner` CHAR(16) NOT NULL,
   `uploaded` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `filePath` VARCHAR(255) NOT NULL,
+  `fileSize` DEC(7,2) NOT NULL,
   PRIMARY KEY (`fileID`, `owner`),
   CONSTRAINT `userID`
     FOREIGN KEY (`owner`)
