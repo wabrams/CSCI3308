@@ -44,12 +44,6 @@ var server = http.createServer(function(req, res)
            if (err) throw err;
            console.log("added "+files.filetoupload.name+" to DB");
          });
-
-         fs.readFile("upload.html", function(err, text)
-         {
-           res.setHeader("Content-Type", "text/html");
-           res.end(text);
-         });
       });
     });
   }
@@ -105,21 +99,3 @@ var server = http.createServer(function(req, res)
 
 console.log("Starting web server at " + serverUrl + ":" + port);
 server.listen(port, serverUrl);
-
-app.get('/files', function(req, res) {
-  var query = 'select fileID, filePath, fileSize, owner from Files;'
-  db.any(query)
-    .then(function (rows) {
-      res.render('files',{
-        my_title: "All Files",
-        data: rows
-      })
-    })
-    .catch(function (err) {
-      request.flash('error', err);
-      Response.render('files',{
-        title: 'All Files',
-        data: ''
-      })
-    })
-})
