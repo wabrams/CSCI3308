@@ -96,6 +96,14 @@ var server = http.createServer(function(req, res)
       res.end(text);
     });
   }
+  else if(req.url.startsWith("/d.png")) //this is also viable
+  {
+    fs.readFile("d.png", function(err, text)
+    {
+      res.setHeader("Content-Type", 'image/png');
+      res.end(text);
+    });
+  }
   else if(req.url.startsWith("/u.png")) //this is also viable
   {
     fs.readFile("u.png", function(err, text)
