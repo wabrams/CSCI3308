@@ -1,0 +1,25 @@
+{
+  "name": "csci3308_cc",
+  "version": "1.0.0",
+  "description": "all project code/components\r # FileBox Source Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wabrams/csci3308_cc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wabrams/csci3308_cc/issues"
+  },
+  "homepage": "https://github.com/wabrams/csci3308_cc#readme",
+  "dependencies": {
+    "formidable": "^1.2.1",
+    "mysql": "^2.17.1",
+    "request": "^2.88.0"
+  }
+}

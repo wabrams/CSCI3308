@@ -10,28 +10,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="download.js"></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">FileBox</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="upload.html">Upload</a></li>
-          <li class="active"><a href="download.html">Download</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Files</a></li>
-              <li><a href="#">Settings</a></li>
-              <li><a href="#">Log Out</a></li>
-            </ul>
-          </li>
+    <script>
+      function fillTable()
+      {
 
-        </ul>
-      </div>
-    </nav>
+        document.getElementById("dtable-body").innerHTML = "<tr><td>foo</td><td>bar</td></tr>";
+      }
+    </script>
+  </head>
+  <body onload="fillTable()">
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+    <script>
+    $(function(){
+      $("#nav-placeholder").load("nav.html");
+    });
+    </script>
 
     <div class="container">
       <h2>Download</h2>
@@ -56,39 +50,31 @@
         <input type="submit">
       </form>
     </div>
-    
+
     <br>
-    <table style="width:70%; margin-left: 15%; margin-right: 15%;" class="table table-bordered">
+    <table style="width:70%; margin-left: 15%; margin-right: 15%;" class="table table-bordered" id="table-tag">
       <thead>
-        <tr>
+        <tr id="dtable-header">
           <th scope="col">ID</th>
           <th scope="col">Name</th>
-          <th scope="col">Size</th>
-          <th scope="col">Date</th>
-          <th scope="col">More</th>
+          <th scope="col">Link</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="dtable-body">
         <tr>
           <td>1</td>
-          <td>John</td>
-          <td>100</td>
-          <td>January 5</td>
-          <td>etc</td>
+          <td>*filename*</td>
+          <td><a href="#">Download</a></td>
         </tr>
         <tr>
           <td>2</td>
-          <td>Jill</td>
-          <td>200</td>
-          <td>February 5</td>
-          <td>etc</td>
+          <td>*filename*</td>
+          <td><a href="#">Download</a></td>
         </tr>
         <tr>
           <td>3</td>
-          <td>Jack</td>
-          <td>300</td>
-          <td>March 5</td>
-          <td>etc</td>
+          <td>*filename*</td>
+          <td><a href="#">Download</a></td>
         </tr>
       </tbody>
     </table>

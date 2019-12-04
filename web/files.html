@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Files</title>
+		<link rel="icon" href="box_icon.png">
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<!--Navigation bar-->
+		<div id="nav-placeholder"></div>
+		<script>
+		$(function(){
+			$("#nav-placeholder").load("nav.html");
+		});
+		</script>
+		<!--end of Navigation bar-->
+
+	    <div class="container">
+	    	<h2>Files</h2>
+	    	<br>
+	    </div>
+
+	    <table id="fTable" style="width:70%; margin-left: 15%; margin-right: 15%;" class="table table-bordered">
+	      <thead>
+	        <tr id="fid0">
+	          <th scope="col">ID</th>
+	          <th scope="col">Name</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr id="fid1">
+	          <td>1</td>
+	          <td>*filename*</td>
+	        </tr>
+	        <tr id="fid2">
+	          <td>2</td>
+	          <td>*filename*</td>
+	        </tr>
+	        <tr id="fid3">
+	          <td>3</td>
+	          <td>*filename*</td>
+	        </tr>
+	      </tbody>
+	    </table>
+	</body>
+</html>

@@ -9,34 +9,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">FileBox</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="upload.html">Upload</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Files</a></li>
-              <li><a href="#">Settings</a></li>
-              <li><a href="#">Log Out</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+    <script>$(function(){$("#nav-placeholder").load("nav.html"); console.log("navbar loaded")});</script>
 
     <div class="container">
       <h2>Upload</h2>
-        <form>
-          <p>single file upload: <input type="file"></p>
-          <p>multiple file upload: <input type="file" name="myFile" multiple></p>
-          <input type="submit" value="Upload" onclick="showAlert()">
+        <form action="upload/upf" method="post" enctype="multipart/form-data">
+          <input type="file" name="filetoupload"><br>
+          <!-- <p>multiple file upload: <input type="file" name="myFile" multiple></p> -->
+          <input type="submit" value="Upload" name="file_upload" onclick="showAlert()">
           <script type="text/javascript">
             function showAlert() {
               alert("Upload is complete.");

@@ -10,22 +10,27 @@ var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost", //localhost
   user: "root",
-  password: "Inf3st0r",
+  password: "filebox1234",
 });
 con.connect(function(err) {
   if (err) throw err;
   console.log("connected to MySQL");
-  con.query("USE csci3308;", function (err, result) {
+  con.query("USE filebox;", function (err, result) {
     if (err) throw err;
     console.log("connected to filebox DB");
   });
 });
 
+
+
 var server = http.createServer(function(req, res)
 {
   counter++;
   console.log("Request: " + req.url + " (" + counter + ")");
+  if (req.method == "/download/list")
+  {
 
+  }
   if (req.url == '/upload/upf')
   {
     var form = new formidable.IncomingForm();
@@ -44,13 +49,11 @@ var server = http.createServer(function(req, res)
            if (err) throw err;
            console.log("added "+files.filetoupload.name+" to DB");
          });
-
-         fs.readFile("upload.html", function(err, text)
-         {
-           res.setHeader("Content-Type", "text/html");
-           res.end(text);
-         });
       });
+
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write('<script>setTimeout(function () { window.location.href = "/home"; }, 5000);</script>');
+      res.end();
     });
   }
   else if(req.url == "/home" || req.url == "")
@@ -76,6 +79,26 @@ var server = http.createServer(function(req, res)
       res.setHeader("Content-Type", "text/html");
       res.end(text);
     });
+    con.query("SELECT * FROM files;", function (err, result, fields)
+    {
+      if (err) throw err;
+
+      var n = result.length;
+      for (var i = 0; i < n; i++)
+      {
+          console.log(result[i].name);
+      }
+      //so we can get the mysql here,
+      //but we can't write to
+    });
+  }
+  else if(req.url == "/login")
+  {
+    fs.readFile("login.html", function(err, text)
+    {
+      res.setHeader("Content-Type", "text/html");
+      res.end(text);
+    });
   }
   else if(req.url == "/nav.html")
   {
@@ -85,7 +108,7 @@ var server = http.createServer(function(req, res)
       res.end(text);
     });
   }
-  else if(req.url == "/account.html")
+  else if(req.url == "/account")
   {
     fs.readFile("account.html", function(err, text)
     {
@@ -104,22 +127,5 @@ var server = http.createServer(function(req, res)
 });
 
 console.log("Starting web server at " + serverUrl + ":" + port);
-server.listen(port, serverUrl);
 
-/*app.get('/files', function(req, res) {
-  var query = 'select fileID, filePath, fileSize, owner from Files;'
-  db.any(query)
-    .then(function (rows) {
-      res.render('files',{
-        my_title: "All Files",
-        data: rows
-      })
-    })
-    .catch(function (err) {
-      request.flash('error', err);
-      Response.render('files',{
-        title: 'All Files',
-        data: ''
-      })
-    })
-})*/
+server.listen(port, serverUrl);
