@@ -45,6 +45,10 @@ var server = http.createServer(function(req, res)
            console.log("added "+files.filetoupload.name+" to DB");
          });
       });
+
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write('<script>setTimeout(function () { window.location.href = "/home"; }, 5000);</script>');
+      res.end();
     });
   }
   else if(req.url == "/home" || req.url == "")
