@@ -31,7 +31,7 @@ var server = http.createServer(function(req, res)
   {
 
   }
-  if (req.url == '/upload/upf')
+  if (req.url == '/upload/upf') // do the same for login besides var form line
   {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files)
@@ -69,6 +69,38 @@ var server = http.createServer(function(req, res)
     fs.readFile("upload.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
+      res.end(text);
+    });
+  }
+  else if(req.url.startsWith("/box_icon.png")) //this is also viable
+  {
+    fs.readFile("box_icon.png", function(err, text)
+    {
+      res.setHeader("Content-Type", 'image/png');
+      res.end(text);
+    });
+  }
+  else if(req.url.startsWith("/sad_face.png")) //this is also viable
+  {
+    fs.readFile("sad_face.png", function(err, text)
+    {
+      res.setHeader("Content-Type", 'image/png');
+      res.end(text);
+    });
+  }
+  else if(req.url.startsWith("/pic1.png")) //this is also viable
+  {
+    fs.readFile("pic1.png", function(err, text)
+    {
+      res.setHeader("Content-Type", 'image/png');
+      res.end(text);
+    });
+  }
+  else if(req.url.startsWith("/u.png")) //this is also viable
+  {
+    fs.readFile("u.png", function(err, text)
+    {
+      res.setHeader("Content-Type", 'image/png');
       res.end(text);
     });
   }

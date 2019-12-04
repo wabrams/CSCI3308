@@ -17,8 +17,10 @@
     <script>$(function(){$("#nav-placeholder").load("nav.html"); console.log("navbar loaded")});</script>
 
     <div class="container">
-      <h1 style="font-size: 100px">Upload</h1><br>
-        <form action="upload/upf" method="post" enctype="multipart/form-data">
+      <h1>Upload</h1>
+      <br>
+     <h5>Here you are able to securely upload any types of file into your account and save them.</h5>
+     <p>Please pick a file you wish to upload</p>        <form action="upload/upf" method="post" enctype="multipart/form-data">
           <input type="file" name="filetoupload"><br>
           <!-- <p>multiple file upload: <input type="file" name="myFile" multiple></p> -->
           <input type="submit" value="Upload" name="file_upload" onclick="showAlert()">
@@ -28,6 +30,8 @@
             }
           </script>
         </form>
+        <br>
+        <img src="u.png" width=200 hight=100>
     </div>
   </body>
 </html>
