@@ -39,7 +39,7 @@ var server = http.createServer(function(req, res)
     form.parse(req, function (err, fields, files)
     {
       var oldpath = files.filetoupload.path;
-      var newpath = "../fb/public/" + files.filetoupload.name;
+      var newpath = "fb/public/" + files.filetoupload.name;
       // console.log(oldpath);
       // console.log(newpath);
       fs.rename(oldpath, newpath, function (err)
@@ -109,6 +109,14 @@ var server = http.createServer(function(req, res)
   else if(req.url.startsWith("/d.png")) //this is also viable
   {
     fs.readFile("d.png", function(err, text)
+    {
+      res.setHeader("Content-Type", 'image/png');
+      res.end(text);
+    });
+  }
+  else if(req.url.startsWith("/a.png")) //this is also viable
+  {
+    fs.readFile("a.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
