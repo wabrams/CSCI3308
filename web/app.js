@@ -5,6 +5,7 @@ var port = 3000;
 var serverUrl = "127.0.0.1";
 var counter = 0;
 const request = require('request');
+var url = require('url');
 
 // var mysql = require("mysql");
 // var con = mysql.createConnection({
@@ -27,6 +28,7 @@ var server = http.createServer(function(req, res)
 {
   counter++;
   console.log("Request: " + req.url + " (" + counter + ")");
+  var query = url.parse(req.url, true).query;
   if (req.method == "/download/list")
   {
 
@@ -96,17 +98,17 @@ var server = http.createServer(function(req, res)
       res.end(text);
     });
   }
-  else if(req.url.startsWith("/d.png")) //this is also viable
+  else if(req.url.startsWith("/u.png")) //this is also viable
   {
-    fs.readFile("d.png", function(err, text)
+    fs.readFile("u.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
     });
   }
-  else if(req.url.startsWith("/u.png")) //this is also viable
+  else if(req.url.startsWith("/d.png")) //this is also viable
   {
-    fs.readFile("u.png", function(err, text)
+    fs.readFile("d.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
@@ -132,6 +134,22 @@ var server = http.createServer(function(req, res)
     //   //but we can't write to
     // });
   }
+  else if(req.url == "/files")
+  {
+    fs.readFile("files.html", function(err, text)
+    {
+      res.setHeader("Content-Type", "text/html");
+      res.end(text);
+    });
+  }
+  else if(req.url == "/setting")
+  {
+    fs.readFile("setting.html", function(err, text)
+    {
+      res.setHeader("Content-Type", "text/html");
+      res.end(text);
+    });
+  }
   else if(req.url == "/login")
   {
     fs.readFile("login.html", function(err, text)
@@ -155,6 +173,63 @@ var server = http.createServer(function(req, res)
       res.setHeader("Content-Type", "text/html");
       res.end(text);
     });
+  }
+  // testing files
+  else if(req.url == "/download/testA")//this is also viable
+  {
+      const file = fs.readFile('fb/public/testA.txt', function (err, content) {
+          if (err) {
+              res.writeHead(400, {'Content-type':'text/html'})
+              console.log(err);
+              res.end("No such file");
+          }
+          else {
+              res.setHeader('Content-disposition', 'attachment; filename=testA.txt');
+              res.end(content);
+          }
+      });
+  }
+  else if(req.url == "/download/testB")//this is also viable
+  {
+      const file = fs.readFile('fb/public/testB.txt', function (err, content) {
+          if (err) {
+              res.writeHead(400, {'Content-type':'text/html'})
+              console.log(err);
+              res.end("No such file");
+          }
+          else {
+              res.setHeader('Content-disposition', 'attachment; filename=testB.txt');
+              res.end(content);
+          }
+      });
+  }
+  else if(req.url == "/download/testC")//this is also viable
+  {
+      const file = fs.readFile('fb/public/testC.txt', function (err, content) {
+          if (err) {
+              res.writeHead(400, {'Content-type':'text/html'})
+              console.log(err);
+              res.end("No such file");
+          }
+          else {
+              res.setHeader('Content-disposition', 'attachment; filename=testC.txt');
+              res.end(content);
+          }
+      });
+  }
+  else if(req.url == "/download/testD")//this is also viable
+  {
+      const file = fs.readFile('fb/public/testD.txt', function (err, content) {
+          if (err) {
+              res.writeHead(400, {'Content-type':'text/html'})
+              console.log(err);
+              res.end("No such file");
+          }
+          else {
+              res.setHeader('Content-disposition', 'attachment; filename=testD.txt');
+              res.end(content);
+          }
+      });
   }
   else  //default case
   {
