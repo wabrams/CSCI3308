@@ -7,20 +7,20 @@ var counter = 0;
 const request = require('request');
 var url = require('url');
 
-// var mysql = require("mysql");
-// var con = mysql.createConnection({
-//   host: "localhost", //localhost
-//   user: "root",
-//   password: "filebox1234",
-// });
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("connected to MySQL");
-//   con.query("USE filebox;", function (err, result) {
-//     if (err) throw err;
-//     console.log("connected to filebox DB");
-//   });
-// });
+var mysql = require("mysql");
+var con = mysql.createConnection({
+  host: "localhost", //localhost
+  user: "root",
+  password: "filebox1234",
+});
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("connected to MySQL");
+  con.query("USE filebox;", function (err, result) {
+    if (err) throw err;
+    console.log("connected to filebox DB");
+  });
+});
 
 
 
@@ -46,15 +46,15 @@ var server = http.createServer(function(req, res)
       {
         if (err) throw err;
 
-        // con.query("INSERT INTO files (name) VALUES ("+'"'+files.filetoupload.name+'"'+");", function (err, result)
-        // {
-        //    if (err) throw err;
-        //    console.log("added "+files.filetoupload.name+" to DB");
-        //  });
+        con.query("INSERT INTO files (name) VALUES ("+'"'+files.filetoupload.name+'"'+");", function (err, result)
+        {
+           if (err) throw err;
+           console.log("added "+files.filetoupload.name+" to DB");
+         });
       });
 
       res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write('<script>setTimeout(function () { window.location.href = "/home"; }, 5000);</script>');
+      res.write('<script>setTimeout(function () { window.location.href = "/upload"; }, 500);</script>');
       res.end();
     });
   }
@@ -129,18 +129,18 @@ var server = http.createServer(function(req, res)
       res.setHeader("Content-Type", "text/html");
       res.end(text);
     });
-    //con.query("SELECT * FROM files;", function (err, result, fields)
-    // {
-    //   if (err) throw err;
-    //
-    //   var n = result.length;
-    //   for (var i = 0; i < n; i++)
-    //   {
-    //       console.log(result[i].name);
-    //   }
-    //   //so we can get the mysql here,
-    //   //but we can't write to
-    // });
+    con.query("SELECT * FROM files;", function (err, result, fields)
+    {
+      if (err) throw err;
+
+      var n = result.length;
+      for (var i = 0; i < n; i++)
+      {
+          console.log(result[i].name);
+      }
+      //so we can get the mysql here,
+      //but we can't write to
+    });
   }
   else if(req.url == "/files")
   {
