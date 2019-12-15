@@ -19,6 +19,7 @@
   "homepage": "https://github.com/wabrams/csci3308_cc#readme",
   "dependencies": {
     "formidable": "^1.2.1",
+    "fs": "0.0.1-security",
     "mysql": "^2.17.1",
     "request": "^2.88.0"
   }

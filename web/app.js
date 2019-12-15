@@ -38,20 +38,50 @@ var server = http.createServer(function(req, res)
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files)
     {
-      var oldpath = files.filetoupload.path;
-      var newpath = "fb/public/" + files.filetoupload.name;
-      // console.log(oldpath);
-      // console.log(newpath);
-      fs.rename(oldpath, newpath, function (err)
-      {
-        if (err) throw err;
 
-        con.query("INSERT INTO files (name) VALUES ("+'"'+files.filetoupload.name+'"'+");", function (err, result)
+    // var fileList = []
+    // fileList.push(files.myFile.name)
+    
+    if (!Array.isArray(files.myFile)){
+       var oldpath = files.myFile.path;
+         var newpath = "fb/public/" + files.myFile.name;
+         console.log(oldpath);
+         console.log(newpath);
+        fs.rename(oldpath, newpath, function (err)
         {
-           if (err) throw err;
-           console.log("added "+files.filetoupload.name+" to DB");
-         });
-      });
+          if (err) throw err;
+
+          con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
+          {
+             if (err) throw err;
+             console.log("added "+files.myFile.name+" to DB");
+           });
+        });
+
+    }
+    else{
+        console.log("hello")
+        for (i = 0; i <= files.myFile.length; i++ ){
+            var oldpath = files.myFile[i].path;
+            var newpath = "fb/public/" + files.myFile[i].name;
+            console.log(oldpath);
+            console.log(newpath);
+            fs.rename(oldpath, newpath, function (err)
+            {
+              if (err) throw err;
+
+              con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile[i].name+'"'+");", function (err, result)
+              {
+                 if (err) throw err;
+                 console.log("added "+files.myFile[i].name+" to DB");
+               });
+        });
+
+       
+      }
+    }
+   
+    
 
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write('<script>setTimeout(function () { window.location.href = "/upload"; }, 500);</script>');
