@@ -26,12 +26,12 @@
      
       <div class="form" style = "text-align:center">
         <h1>Sign up</h1>
-        <form class="register-form" method = "post">
-          <input  type="text" placeholder="username"/>
+        <form action="login/create" class="register-form" method = "post" enctype="multipart/form-data">
+          <input  type="text" placeholder="username" name="username"/>
           <br>
-          <input  type="text" placeholder="password"/>
+          <input  type="text" placeholder="password" name="pass"/>
           <br>
-          <input type="text" placeholder="email"/>
+          <input type="text" placeholder="email" name="email"/>
           <br>
           <button>Create Account</button><br>
           <!-- <p class="message">Already have an account? <a href="#" class="btn btn-danger">Login</a></p> -->

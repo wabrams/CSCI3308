@@ -92,6 +92,23 @@ var server = http.createServer(function(req, res)
       res.end();
     });
   }
+  else if(req.url == "/login/create")
+  {
+  	var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, users)
+    {
+    	if (err) throw err;
+
+              con.query("INSERT INTO users (name,pass) VALUES ("+'"'+users.username.name+users.pass.name+'"'+");", function (err, result)
+              {
+                 if (err) throw err;
+                 console.log("added "+users.username.name+" to DB");
+               });
+    });
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<script>setTimeout(function () { window.location.href = "/login"; }, 500);</script>');
+    res.end();
+  }
   else if(req.url == "/home" || req.url == "")
   {
     fs.readFile("index.html", function(err, text)
