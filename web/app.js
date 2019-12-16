@@ -43,7 +43,6 @@ var server = http.createServer(function(req, res)
 
     
     if (!Array.isArray(files.myFile)){
-<<<<<<< HEAD
        var oldpath = files.myFile.path;
          var newpath = "../fb/public/" + files.myFile.name;
          console.log(oldpath);
@@ -51,16 +50,6 @@ var server = http.createServer(function(req, res)
         fs.rename(oldpath, newpath, function (err)
         {
           if (err) throw err;
-=======
-                
-            var oldpath = files.myFile.path;
-            var newpath = "fb/public/" + files.myFile.name;
-            console.log(oldpath);
-            console.log(newpath);
-            fs.rename(oldpath, newpath, function (err)
-            {
-              if (err) throw err;
->>>>>>> e8c452621bc6985975da9fb3df77d05074c2348e
 
               con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
               {
