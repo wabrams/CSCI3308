@@ -23,13 +23,23 @@
     <!--end of Navigation bar-->
 
     <div class="login-page">
-     
+
       <div class="form" style = "text-align:center">
         <h1>Sign up</h1>
-        <form action="login/create" class="register-form" method = "post" enctype="multipart/form-data">
+        <form action="account/create" class="register-form" method = "post" enctype="multipart/form-data">
           <input  type="text" placeholder="username" name="username"/>
           <br>
-          <input  type="text" placeholder="password" name="pass"/>
+          <input type="text" placeholder="password" name="pass"/>
+          <!-- <div class="modal-footer">
+              <div id="message" style="display:block">
+                  <h3>Password must contain the following:</h3>
+                  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                  <p id="number" class="invalid">A <b>number</b></p>
+                  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                  <p id="match" class="invalid">Password and Confirm Password Match</p>
+              </div>
+          </div> -->
           <br>
           <input type="text" placeholder="email" name="email"/>
           <br>
@@ -37,7 +47,7 @@
           <!-- <p class="message">Already have an account? <a href="#" class="btn btn-danger">Login</a></p> -->
         </form>
          <h1>Login</h1>
-        <form class="login-form">
+        <form action="account/login" class="login-form" method = "post" enctype="multipart/form-data">
           <input type="text" placeholder="username">
           <br>
           <input type="password" placeholder="password">
