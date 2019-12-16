@@ -1,4 +1,3 @@
-
 console.log("script loaded!");
 
 console.log(rows);
@@ -22,7 +21,7 @@ $(document).ready(function() {
       var nuLink = document.createElement("td");
       var nuA = document.createElement("a");
 
-      nuID.innerHTML = rows[i].fileID;
+      nuID.innerHTML = rows[i].id;
       nuName.innerHTML = rows[i].name;
       nuA.href = "download?file="+rows[i].name;
       nuA.innerHTML = "Link";
@@ -34,7 +33,7 @@ $(document).ready(function() {
       nuRow.appendChild(nuLink);
 
       table.appendChild(nuRow);
-      
+
   }}
 });
 function df_vis_sel(sel_vis)
