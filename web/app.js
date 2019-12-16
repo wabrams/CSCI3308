@@ -29,6 +29,8 @@ var server = http.createServer(function(req, res)
   counter++;
   console.log("Request: " + req.url + " (" + counter + ")");
   var query = url.parse(req.url, true).query;
+  var params = new URLSearchParams(query); //Parsing file name from a download request
+  console.log(params);
   if (req.method == "/download/list")
   {
 
@@ -44,7 +46,7 @@ var server = http.createServer(function(req, res)
     
     if (!Array.isArray(files.myFile)){
        var oldpath = files.myFile.path;
-         var newpath = "fb/public/" + files.myFile.name;
+         var newpath = "../fb/public/" + files.myFile.name;
          console.log(oldpath);
          console.log(newpath);
         fs.rename(oldpath, newpath, function (err)
@@ -63,7 +65,7 @@ var server = http.createServer(function(req, res)
         console.log("hello")
         for (i = 0; i <= files.myFile.length; i++ ){
             var oldpath = files.myFile[i].path;
-            var newpath = "fb/public/" + files.myFile[i].name;
+            var newpath = "../fb/public/" + files.myFile[i].name;
             console.log(oldpath);
             console.log(newpath);
             fs.rename(oldpath, newpath, function (err)
@@ -152,26 +154,61 @@ var server = http.createServer(function(req, res)
       res.end(text);
     });
   }
-  else if(req.url == "/download")
+  else if(req.url == "/download")// just pulls the base html
   {
     fs.readFile("download.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
+      
       res.end(text);
     });
-    con.query("SELECT * FROM files;", function (err, result, fields)
+    
+  }
+  else if(req.url == "/download.js") //here's where db data is collected and passed to javascript
+  {
+    con.query("SELECT * FROM files", function (err, result, fields)
     {
       if (err) throw err;
 
-      var n = result.length;
-      for (var i = 0; i < n; i++)
+      rows = "var rows = "+JSON.stringify(result)+";";//build the data string 
+      //initialize the js file. This will overwrite the file sent to the previous request
+      //Note: download0.js contains our actual js code for building the download table and is
+      //unaffected by this process
+      fs.writeFileSync("./download.js", rows, (err) => {
+        if (err) throw err;
+        console.log('new download.js created w/ files data');
+      });
+      fs.appendFileSync("./download.js", fs.readFileSync("./download0.js"), (err) => {
+        if (err) throw err;
+        console.log('appended table pop script to download.js');
+      });
+      fs.readFile("./download.js", function(err, text)
       {
-          console.log(result[i].name);
+        res.setHeader("Content-Type", "text/javascript");
+        res.end(text);
+      })
+    });
+
+    
+  }
+  //routing for file download
+  else if(params.has("file")) {
+    var fp = "../fb/public/"+params.get("file");
+    const file = fs.readFile(fp, function (err, content) {
+      if (err) {
+          res.writeHead(400, {'Content-type':'text/html'})
+          console.log(err);
+          res.end("No such file");
       }
-      //so we can get the mysql here,
-      //but we can't write to
+      else {
+          var header = "attachment; filename="+params.get("file");
+          res.setHeader('Content-disposition', header);
+          res.end(content);
+      }
     });
   }
+
+  //deprecated route.  should probably delete.
   else if(req.url == "/files")
   {
     fs.readFile("files.html", function(err, text)
@@ -215,7 +252,7 @@ var server = http.createServer(function(req, res)
   // testing files
   else if(req.url == "/download/testA")//this is also viable
   {
-      const file = fs.readFile('fb/public/testA.txt', function (err, content) {
+      const file = fs.readFile('../fb/public/testA.txt', function (err, content) {
           if (err) {
               res.writeHead(400, {'Content-type':'text/html'})
               console.log(err);
@@ -229,7 +266,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/download/testB")//this is also viable
   {
-      const file = fs.readFile('fb/public/testB.txt', function (err, content) {
+      const file = fs.readFile('../fb/public/testB.txt', function (err, content) {
           if (err) {
               res.writeHead(400, {'Content-type':'text/html'})
               console.log(err);
@@ -243,7 +280,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/download/testC")//this is also viable
   {
-      const file = fs.readFile('fb/public/testC.txt', function (err, content) {
+      const file = fs.readFile('../fb/public/testC.txt', function (err, content) {
           if (err) {
               res.writeHead(400, {'Content-type':'text/html'})
               console.log(err);
@@ -257,7 +294,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/download/testD")//this is also viable
   {
-      const file = fs.readFile('fb/public/testD.txt', function (err, content) {
+      const file = fs.readFile('../fb/public/testD.txt', function (err, content) {
           if (err) {
               res.writeHead(400, {'Content-type':'text/html'})
               console.log(err);
@@ -278,6 +315,7 @@ var server = http.createServer(function(req, res)
     });
   }
 });
+
 
 console.log("Starting web server at " + serverUrl + ":" + port);
 

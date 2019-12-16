@@ -11,13 +11,15 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema csci3308
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `csci3308` DEFAULT CHARACTER SET utf8 ;
-USE `csci3308` ;
+CREATE SCHEMA IF NOT EXISTS `filebox` DEFAULT CHARACTER SET utf8 ;
+USE `filebox` ;
 
 -- -----------------------------------------------------
 -- Table `csci3308`.`Users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `csci3308`.`Users` (
+
+DROP TABLE users;
+CREATE TABLE IF NOT EXISTS `users` (
   `username` VARCHAR(16) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
@@ -25,30 +27,33 @@ CREATE TABLE IF NOT EXISTS `csci3308`.`Users` (
   `userID` INT NOT NULL AUTO_INCREMENT COMMENT 'GUID',
   PRIMARY KEY (`userID`));
 
-CREATE UNIQUE INDEX `email_UNIQUE` ON `csci3308`.`Users` (`email` ASC) VISIBLE;
+CREATE UNIQUE INDEX `email_UNIQUE` ON `filebox`.`users` (`email` ASC) VISIBLE;
 
-CREATE UNIQUE INDEX `username_UNIQUE` ON `csci3308`.`Users` (`username` ASC) VISIBLE;
+CREATE UNIQUE INDEX `username_UNIQUE` ON `filebox`.`users` (`username` ASC) VISIBLE;
 
+INSERT INTO users (username, email, password) VALUES ('public', 'test123@test.com', '1234567');
 
 -- -----------------------------------------------------
 -- Table `csci3308`.`Files`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `csci3308`.`Files` (
+DROP TABLE files;
+CREATE TABLE IF NOT EXISTS `files` (
   `fileID` INT NOT NULL AUTO_INCREMENT,
-  `owner` CHAR(16) NOT NULL,
+  `owner` INT NOT NULL DEFAULT 1,
   `uploaded` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `filePath` VARCHAR(255) NOT NULL,
-  `fileSize` DEC(7,2) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `fileSize` DEC(7,2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`fileID`, `owner`),
   CONSTRAINT `userID`
     FOREIGN KEY (`owner`)
-    REFERENCES `csci3308`.`Users` (`userID`)
+    REFERENCES `filebox`.`users` (`userID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fileOwner_idx` ON `csci3308`.`Files` (`owner` ASC) VISIBLE;
+CREATE INDEX `fileOwner_idx` ON `filebox`.`files` (`owner` ASC) VISIBLE;
 
+INSERT INTO files (name) VALUES ('testA.txt'), ('testB.txt'), ('testC.txt'), ('testD.txt');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
