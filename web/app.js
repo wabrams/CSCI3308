@@ -33,35 +33,36 @@ var server = http.createServer(function(req, res)
   {
 
   }
-  if (req.url == '/upload/upf') // do the same for login besides var form line
+  if (req.url == '/upload/upf' && req.method.toLowerCase() === 'post') // do the same for login besides var form line
   {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files)
     {
 
-    // var fileList = []
-    // fileList.push(files.myFile.name)
     
     if (!Array.isArray(files.myFile)){
-       var oldpath = files.myFile.path;
-         var newpath = "fb/public/" + files.myFile.name;
-         console.log(oldpath);
-         console.log(newpath);
-        fs.rename(oldpath, newpath, function (err)
-        {
-          if (err) throw err;
+                
+            var oldpath = files.myFile.path;
+            var newpath = "fb/public/" + files.myFile.name;
+            console.log(oldpath);
+            console.log(newpath);
+            fs.rename(oldpath, newpath, function (err)
+            {
+              if (err) throw err;
 
-          con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
-          {
-             if (err) throw err;
-             console.log("added "+files.myFile.name+" to DB");
-           });
+              con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
+              {
+                 if (err) throw err;
+                 console.log("added "+files.myFile.name+" to DB");
+               });
         });
 
-    }
+          
+
+      }
     else{
-        console.log("hello")
         for (i = 0; i <= files.myFile.length; i++ ){
+           
             var oldpath = files.myFile[i].path;
             var newpath = "fb/public/" + files.myFile[i].name;
             console.log(oldpath);
@@ -78,8 +79,11 @@ var server = http.createServer(function(req, res)
         });
 
        
-      }
     }
+
+    }
+  
+    
    
     
 
