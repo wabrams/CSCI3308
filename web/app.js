@@ -16,13 +16,12 @@ var con = mysql.createConnection({
 con.connect(function(err) {
   if (err) throw err;
   console.log("connected to MySQL");
-  con.query("USE filebox;", function (err, result) {
+  con.query("USE filebox;", function (err, result)
+  {
     if (err) throw err;
     console.log("connected to filebox DB");
   });
 });
-
-
 
 var server = http.createServer(function(req, res)
 {
@@ -38,67 +37,27 @@ var server = http.createServer(function(req, res)
   if (req.url == '/upload/upf' && req.method.toLowerCase() === 'post')
   {
     var form = new formidable.IncomingForm();
+    form.multiples = true;
     form.parse(req, function (err, fields, files)
     {
-      if (!Array.isArray(files.myFile))
-      {
-        var oldpath = files.myFile.path;
-        var newpath = "fb/public/" + files.myFile.name;
-        console.log(oldpath);
-        console.log(newpath);
-        fs.rename(oldpath, newpath, function (err)
-        {
-          if (err) throw err;
-          con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
-          {
-             if (err) throw err;
-             console.log("added "+files.myFile.name+" to DB");
-           });
-        });
-    }
-    else
-    {
-      for (i = 0; i <= files.myFile.length; i++ )
-      {
-          var oldpath = files.myFile[i].path;
-          var newpath = "../fb/public/" + files.myFile[i].name;
-          console.log(oldpath);
-          console.log(newpath);
-          fs.rename(oldpath, newpath, function (err)
-          {
-            if (err) throw err;
+      // console.log("Fields: ");
+      // console.log(fields);
+      console.log("Files: ");
+      console.log(files);
+      console.log(files.myFile[0].name);
 
-            con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile[i].name+'"'+");", function (err, result)
-            {
-               if (err) throw err;
-               console.log("added "+files.myFile[i].name+" to DB");
-             });
-        });
-      }
-    }
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<script>setTimeout(function () { window.location.href = "/upload"; }, 500);</script>');
-    res.end();
+      // fs.rename(oldpath, newpath, function (err)
+      // {
+      //   if (err) throw err;
+      //   con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
+      //   {
+      //      if (err) throw err;
+      //      console.log("added "+files.myFile.name+" to DB");
+      //    });
+      // });
     });
   }
-  else if(req.url == "/account/create")
-  {
-  	var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields)
-    {
-    	if (err) throw err;
-
-              con.query("INSERT INTO users (name, pass, email) VALUES ("+'"'+fields.username + '", "' + fields.pass + '", "' + fields.email +' "'+");", function (err, result)
-              {
-                 if (err) throw err;
-                 console.log("added " + fields.username +" to DB");
-               });
-    });
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<script>setTimeout(function () { window.location.href = "/login"; }, 500);</script>');
-    res.end();
-  }
-  else if(req.url == "/account/login")
+  else if(req.url == "/login/create")
   {
   	var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields)
@@ -269,63 +228,6 @@ var server = http.createServer(function(req, res)
       res.setHeader("Content-Type", "text/html");
       res.end(text);
     });
-  }
-  // testing files
-  else if(req.url == "/download/testA")//this is also viable
-  {
-      const file = fs.readFile('../fb/public/testA.txt', function (err, content) {
-          if (err) {
-              res.writeHead(400, {'Content-type':'text/html'})
-              console.log(err);
-              res.end("No such file");
-          }
-          else {
-              res.setHeader('Content-disposition', 'attachment; filename=testA.txt');
-              res.end(content);
-          }
-      });
-  }
-  else if(req.url == "/download/testB")//this is also viable
-  {
-      const file = fs.readFile('../fb/public/testB.txt', function (err, content) {
-          if (err) {
-              res.writeHead(400, {'Content-type':'text/html'})
-              console.log(err);
-              res.end("No such file");
-          }
-          else {
-              res.setHeader('Content-disposition', 'attachment; filename=testB.txt');
-              res.end(content);
-          }
-      });
-  }
-  else if(req.url == "/download/testC")//this is also viable
-  {
-      const file = fs.readFile('../fb/public/testC.txt', function (err, content) {
-          if (err) {
-              res.writeHead(400, {'Content-type':'text/html'})
-              console.log(err);
-              res.end("No such file");
-          }
-          else {
-              res.setHeader('Content-disposition', 'attachment; filename=testC.txt');
-              res.end(content);
-          }
-      });
-  }
-  else if(req.url == "/download/testD")//this is also viable
-  {
-      const file = fs.readFile('../fb/public/testD.txt', function (err, content) {
-          if (err) {
-              res.writeHead(400, {'Content-type':'text/html'})
-              console.log(err);
-              res.end("No such file");
-          }
-          else {
-              res.setHeader('Content-disposition', 'attachment; filename=testD.txt');
-              res.end(content);
-          }
-      });
   }
   else  //default case
   {
