@@ -41,12 +41,12 @@ var server = http.createServer(function(req, res)
     form.parse(req, function (err, fields, files)
     {
 
-    
+
     if (!Array.isArray(files.myFile)){
 // <<<<<<< HEAD
-    
+
 // =======
-                
+
             var oldpath = files.myFile.path;
             var newpath = "fb/public/" + files.myFile.name;
             console.log(oldpath);
@@ -63,12 +63,12 @@ var server = http.createServer(function(req, res)
                });
         });
 
-          
+
 
      }
     else{
         for (i = 0; i <= files.myFile.length; i++ ){
-           
+
             var oldpath = files.myFile[i].path;
             var newpath = "../fb/public/" + files.myFile[i].name;
             console.log(oldpath);
@@ -84,14 +84,14 @@ var server = http.createServer(function(req, res)
                });
         });
 
-       
+
     }
 
     }
-  
-    
-   
-    
+
+
+
+
 
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write('<script>setTimeout(function () { window.location.href = "/upload"; }, 500);</script>');
@@ -101,14 +101,14 @@ var server = http.createServer(function(req, res)
   else if(req.url == "/login/create")
   {
   	var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, users)
+    form.parse(req, function (err, fields)
     {
     	if (err) throw err;
 
-              con.query("INSERT INTO users (name,pass) VALUES ("+'"'+users.username.name+users.pass.name+'"'+");", function (err, result)
+              con.query("INSERT INTO users (name, pass) VALUES ("+'"'+fields.username + '", "' + fields.pass + '"'+");", function (err, result)
               {
                  if (err) throw err;
-                 console.log("added "+users.username.name+" to DB");
+                 console.log("added " + fields.username +" to DB");
                });
     });
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -184,10 +184,10 @@ var server = http.createServer(function(req, res)
     fs.readFile("download.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
-      
+
       res.end(text);
     });
-    
+
   }
   else if(req.url == "/download.js") //here's where db data is collected and passed to javascript
   {
@@ -195,7 +195,7 @@ var server = http.createServer(function(req, res)
     {
       if (err) throw err;
 
-      rows = "var rows = "+JSON.stringify(result)+";";//build the data string 
+      rows = "var rows = "+JSON.stringify(result)+";";//build the data string
       //initialize the js file. This will overwrite the file sent to the previous request
       //Note: download0.js contains our actual js code for building the download table and is
       //unaffected by this process
@@ -214,7 +214,7 @@ var server = http.createServer(function(req, res)
       })
     });
 
-    
+
   }
   //routing for file download
   else if(params.has("file")) {

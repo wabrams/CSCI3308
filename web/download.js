@@ -1,4 +1,4 @@
-rows = [{"fileID":1,"owner":1,"uploaded":"2019-12-16T00:13:31.000Z","name":"tsh.cc","fileSize":0},{"fileID":2,"owner":1,"uploaded":"2019-12-16T02:27:06.000Z","name":"shlab.pdf","fileSize":0},{"fileID":3,"owner":1,"uploaded":"2019-12-16T03:49:28.000Z","name":"python-3.7.4-amd64.exe","fileSize":0}];
+var rows = [];
 console.log("script loaded!");
 
 console.log(rows);
