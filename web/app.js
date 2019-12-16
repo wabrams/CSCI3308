@@ -35,16 +35,15 @@ var server = http.createServer(function(req, res)
   {
 
   }
-  if (req.url == '/upload/upf') // do the same for login besides var form line
+  if (req.url == '/upload/upf' && req.method.toLowerCase() === 'post') // do the same for login besides var form line
   {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files)
     {
 
-    // var fileList = []
-    // fileList.push(files.myFile.name)
     
     if (!Array.isArray(files.myFile)){
+<<<<<<< HEAD
        var oldpath = files.myFile.path;
          var newpath = "../fb/public/" + files.myFile.name;
          console.log(oldpath);
@@ -52,18 +51,30 @@ var server = http.createServer(function(req, res)
         fs.rename(oldpath, newpath, function (err)
         {
           if (err) throw err;
+=======
+                
+            var oldpath = files.myFile.path;
+            var newpath = "fb/public/" + files.myFile.name;
+            console.log(oldpath);
+            console.log(newpath);
+            fs.rename(oldpath, newpath, function (err)
+            {
+              if (err) throw err;
+>>>>>>> e8c452621bc6985975da9fb3df77d05074c2348e
 
-          con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
-          {
-             if (err) throw err;
-             console.log("added "+files.myFile.name+" to DB");
-           });
+              con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
+              {
+                 if (err) throw err;
+                 console.log("added "+files.myFile.name+" to DB");
+               });
         });
 
-    }
+          
+
+      }
     else{
-        console.log("hello")
         for (i = 0; i <= files.myFile.length; i++ ){
+           
             var oldpath = files.myFile[i].path;
             var newpath = "../fb/public/" + files.myFile[i].name;
             console.log(oldpath);
@@ -80,8 +91,11 @@ var server = http.createServer(function(req, res)
         });
 
        
-      }
     }
+
+    }
+  
+    
    
     
 
@@ -89,6 +103,23 @@ var server = http.createServer(function(req, res)
       res.write('<script>setTimeout(function () { window.location.href = "/upload"; }, 500);</script>');
       res.end();
     });
+  }
+  else if(req.url == "/login/create")
+  {
+  	var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, users)
+    {
+    	if (err) throw err;
+
+              con.query("INSERT INTO users (name,pass) VALUES ("+'"'+users.username.name+users.pass.name+'"'+");", function (err, result)
+              {
+                 if (err) throw err;
+                 console.log("added "+users.username.name+" to DB");
+               });
+    });
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<script>setTimeout(function () { window.location.href = "/login"; }, 500);</script>');
+    res.end();
   }
   else if(req.url == "/home" || req.url == "")
   {

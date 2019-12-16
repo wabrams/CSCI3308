@@ -23,24 +23,27 @@
     <!--end of Navigation bar-->
 
     <div class="login-page">
-      <div class="form">
-        <form class="register-form">
-          <input class="form-control" type="text" placeholder="username"/>
+     
+      <div class="form" style = "text-align:center">
+        <h1>Sign up</h1>
+        <form action="login/create" class="register-form" method = "post" enctype="multipart/form-data">
+          <input  type="text" placeholder="username" name="username"/>
           <br>
-          <input class="form-control" type="text" placeholder="password"/>
+          <input  type="text" placeholder="password" name="pass"/>
           <br>
-          <input class="form-control"type="text" placeholder="email"/>
+          <input type="text" placeholder="email" name="email"/>
           <br>
-          <button>Create Account</button>
-          <p class="message">Already have an account? <a href="#" class="btn btn-danger">Login</a></p>
+          <button>Create Account</button><br>
+          <!-- <p class="message">Already have an account? <a href="#" class="btn btn-danger">Login</a></p> -->
         </form>
+         <h1>Login</h1>
         <form class="login-form">
-          <input class="form-control"type="text" placeholder="username">
+          <input type="text" placeholder="username">
           <br>
-          <input class="form-control" type="password" placeholder="password">
+          <input type="password" placeholder="password">
           <br>
           <button>Login</button>
-        <p class="message">Not Signed up? <a href="#" class="btn btn-danger">Sign Up</a></p>
+        <!-- <p class="message">Not Signed up? <a href="#" class="btn btn-danger">Sign Up</a></p> -->
         </form>
       </div>
     </div>
@@ -49,7 +52,7 @@
       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
       });
     </script>
-    <footer id="main-footer">
+    <footer id="main-footer" style = "text-align:center">
         <p>Copyrights &copy; 2019 FileBox</p>
     </footer>
   </body>
