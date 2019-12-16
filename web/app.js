@@ -22,8 +22,6 @@ con.connect(function(err) {
   });
 });
 
-
-
 var server = http.createServer(function(req, res)
 {
   counter++;
@@ -128,6 +126,14 @@ var server = http.createServer(function(req, res)
     fs.readFile("upload.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
+      res.end(text);
+    });
+  }
+  else if(req.url.startsWith("/login2.js")) //this is also viable
+  {
+    fs.readFile("login2.js", function(err, text)
+    {
+      res.setHeader("Content-Type", "text/javascript");
       res.end(text);
     });
   }
