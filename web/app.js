@@ -34,27 +34,60 @@ var server = http.createServer(function(req, res)
   {
 
   }
-  if (req.url == '/upload/upf' && req.method.toLowerCase() === 'post')
+  if (req.url == '/upload/upf') // do the same for login besides var form line
   {
     var form = new formidable.IncomingForm();
-    form.multiples = true;
     form.parse(req, function (err, fields, files)
     {
-      // console.log("Fields: ");
-      // console.log(fields);
-      console.log("Files: ");
-      console.log(files);
-      console.log(files.myFile[0].name);
 
-      // fs.rename(oldpath, newpath, function (err)
-      // {
-      //   if (err) throw err;
-      //   con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile.name+'"'+");", function (err, result)
-      //   {
-      //      if (err) throw err;
-      //      console.log("added "+files.myFile.name+" to DB");
-      //    });
-      // });
+    // var fileList = []
+    // fileList.push(files.myFile.name)
+    var newFiles = JSON.parse(files.myFile);
+    if (!Array.isArray(newFiles)){
+       var oldpath = newFiles.path;
+         var newpath = "../fb/public/" + files.myFile.name;
+         console.log("adding 1 file");
+         console.log(oldpath);
+         console.log(newpath);
+        fs.rename(oldpath, newpath, function (err)
+        {
+          if (err) throw err;
+
+          con.query("INSERT INTO files (name) VALUES ("+'"'+newFiles.name+'"'+");", function (err, result)
+          {
+             if (err) throw err;
+             console.log("added "+newFiles.name+" to DB");
+           });
+        });
+
+    }
+    else{
+        console.log("hello")
+        for (i = 0; i <= files.myFile.length; i++ ){
+            var oldpath = files.myFile[i].path;
+            var newpath = "../fb/public/" + files.myFile[i].name;
+            console.log(oldpath);
+            console.log(newpath);
+            fs.rename(oldpath, newpath, function (err)
+            {
+              if (err) throw err;
+
+              con.query("INSERT INTO files (name) VALUES ("+'"'+files.myFile[i].name+'"'+");", function (err, result)
+              {
+                 if (err) throw err;
+                 console.log("added "+files.myFile[i].name+" to DB");
+               });
+        });
+
+       
+      }
+    }
+   
+    
+
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write('<script>setTimeout(function () { window.location.href = "/download"; }, 500);</script>');
+      res.end();
     });
   }
   else if(req.url == "/account/create")

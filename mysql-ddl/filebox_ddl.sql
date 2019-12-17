@@ -53,6 +53,7 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fileOwner_idx` ON `filebox`.`files` (`owner` ASC) VISIBLE;
 
+INSERT INTO files (name) VALUES ("testA.txt");
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
