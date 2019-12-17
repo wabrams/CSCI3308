@@ -45,19 +45,19 @@ var server = http.createServer(function(req, res)
       console.log("Files: ");
       console.log(files);
 
-     
+
       if(!Array.isArray(files.myFile)){
          var oldpath = files.myFile.path;
          var newpath = "fb/public/" + files.myFile.name;
          fs.rename(oldpath, newpath, function (err)
-         {   
+         {
           if (err) throw err;
           con.query("INSERT INTO files (name) VALUES " +  " ('" + files.myFile.name + "');", function (err, result)
         {
          if (err) throw err;
          console.log("added files to DB");
         });
-          
+
          });
 
       }
@@ -65,7 +65,7 @@ var server = http.createServer(function(req, res)
           queryValues = "";
          for(i = 0; i < files.myFile.length;i++)
          {
-        // ('name') , 
+        // ('name') ,
              queryValues += " ('" + files.myFile[i].name + "')";
              if (i < files.myFile.length - 1)
               queryValues += ",";
@@ -74,7 +74,7 @@ var server = http.createServer(function(req, res)
              var oldpath = files.myFile[i].path;
              var newpath = "fb/public/" + files.myFile[i].name;
              fs.rename(oldpath, newpath, function (err)
-             {   
+             {
               if (err) throw err;
               // console.log("added file to FS");
              });
@@ -88,7 +88,7 @@ var server = http.createServer(function(req, res)
           });
 
       }
-     
+
     });
 
     res.writeHead(200, {'Content-Type': 'text/html'});
