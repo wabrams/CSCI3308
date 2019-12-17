@@ -9,9 +9,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" </script>
     <link rel="stylesheet" type="text/css" href="pstyle.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./login2.js"></script>
   </head>
   <body>
     <!--Navigation bar-->
@@ -31,17 +29,12 @@
         <form action="account/create" class="register-form" method = "post" enctype="multipart/form-data">
           <input  type="text" placeholder="username" name="username"/>
           <br>
-          <input id="passwordd" type="text" placeholder="password" required="required" name="pass"/>
-
+          <input id="passwordd" type="text" placeholder="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" required="required" name="pass" title="Must contain letter, upper case letter and at least 8 or more characters" required/>
           <br>
           <input type="text" placeholder="email" name="email"/>
           <br>
-          <button id="my_submit_button" disabled onClick="openModal()">Create Account</button><br>
+          <button>Create Account</button><br>
           <!-- <p class="message">Already have an account? <a href="#" class="btn btn-danger">Login</a></p> -->
-              <div id="message">
-                  <h3>Password must contain:</h3>
-                  <p id="length" class="invalid">Minimum <b>5 characters</b></p>
-              </div>
         </form>
          <h1>Login</h1>
         <form action="account/login" class="login-form" method = "post" enctype="multipart/form-data">
@@ -62,6 +55,53 @@
     <footer id="main-footer" style = "text-align:center">
         <p>Copyrights &copy; 2019 FileBox</p>
     </footer>
+    <script>
+    var myInput = document.getElementById("passwordd");
+    var length = document.getElementById("length");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    // When the user clicks on the password field, show the message box
+    myInput.onfocus = function() {
+      document.getElementById("message").style.display = "block";
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    myInput.onblur = function() {
+      document.getElementById("message").style.display = "none";
+    }
+
+    // When the user starts to type something inside the password field
+    myInput.onkeyup = function() {
+
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {
+          letter.classList.remove("invalid");
+          letter.classList.add("valid");
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+      }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {
+          capital.classList.remove("invalid");
+          capital.classList.add("valid");
+        } else {
+          capital.classList.remove("valid");
+          capital.classList.add("invalid");
+        }
+
+      if(myInput.value.length >= 8) {
+        length.classList.remove("invalid");
+        length.classList.add("valid");
+      } else {
+        length.classList.remove("valid");
+        length.classList.add("invalid");
+      }
+    }
+    </script>
+
   </body>
 </html>
 
