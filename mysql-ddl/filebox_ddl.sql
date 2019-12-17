@@ -18,7 +18,7 @@ USE `chh284y2ajkmd01v` ;
 -- Table `csci3308`.`Users`
 -- -----------------------------------------------------
 
-DROP TABLE users;
+
 CREATE TABLE IF NOT EXISTS `users` (
   `username` VARCHAR(16) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
@@ -27,16 +27,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userID` INT NOT NULL AUTO_INCREMENT COMMENT 'GUID',
   PRIMARY KEY (`userID`));
 
-CREATE UNIQUE INDEX `email_UNIQUE` ON `chh284y2ajkmd01v`.`users` (`email` ASC) VISIBLE;
+CREATE UNIQUE INDEX `email_UNIQUE` ON `chh284y2ajkmd01v`.`users` (`email` ASC)chh284y2ajkmd01v;
 
-CREATE UNIQUE INDEX `username_UNIQUE` ON `chh284y2ajkmd01v`.`users` (`username` ASC) VISIBLE;
+CREATE UNIQUE INDEX `username_UNIQUE` ON `chh284y2ajkmd01v`.`users` (`username` ASC);
 
 INSERT INTO users (username, email, password) VALUES ('public', 'test123@test.com', '1234567');
 
 -- -----------------------------------------------------
 -- Table `csci3308`.`Files`
 -- -----------------------------------------------------
-DROP TABLE files;
+
 CREATE TABLE IF NOT EXISTS `files` (
   `fileID` INT NOT NULL AUTO_INCREMENT,
   `owner` INT NOT NULL DEFAULT 1,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `files` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fileOwner_idx` ON `chh284y2ajkmd01v`.`files` (`owner` ASC) VISIBLE;
+CREATE INDEX `fileOwner_idx` ON `chh284y2ajkmd01v`.`files` (`owner` ASC);
 
 INSERT INTO files (name) VALUES ("testA.txt");
 
