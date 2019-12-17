@@ -1,3 +1,4 @@
+
 console.log("script loaded!");
 
 console.log(rows);
@@ -21,7 +22,7 @@ $(document).ready(function() {
       var nuLink = document.createElement("td");
       var nuA = document.createElement("a");
 
-      nuID.innerHTML = rows[i].id;
+      nuID.innerHTML = rows[i].fileID;
       nuName.innerHTML = rows[i].name;
       nuA.href = "download?file="+rows[i].name;
       nuA.innerHTML = "Link";
