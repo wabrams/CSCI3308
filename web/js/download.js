@@ -1,4 +1,4 @@
-var rows = [{"id":1,"name":"io_booster.sch"},{"id":2,"name":"eagle.epf"}];console.log("script loaded!");
+var rows = [{"fileID":1,"owner":1,"uploaded":"2019-12-17T02:36:29.000Z","name":"testA.txt","fileSize":0},{"fileID":2,"owner":1,"uploaded":"2019-12-17T02:36:29.000Z","name":"testB.txt","fileSize":0},{"fileID":3,"owner":1,"uploaded":"2019-12-17T02:36:29.000Z","name":"testC.txt","fileSize":0},{"fileID":4,"owner":1,"uploaded":"2019-12-17T02:36:29.000Z","name":"testD.txt","fileSize":0}];console.log("script loaded!");
 
 console.log(rows);
 
