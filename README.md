@@ -30,3 +30,8 @@ open source, low functionality dropbox clone.
 - All imaged used in the application are in the img folder  
 
 ## How to build/run/test our code
+- Use MySQL database
+	- Download npms (mysql, http, formidable, fs, request)
+	- To use this, run the file
+- NOTE: app.js is what is currently hosted, upload does not currently work because it requires a file server add-on, all options for which are pay-walled. To see proper functionality, run app_local.js with a locally run MySQL server.
+- To initialize the MySQL database, run the MySQL-ddl/filebox_ddl.sql script and set connection password to your localhost password
