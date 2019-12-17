@@ -11,18 +11,36 @@
   </head>
 
   <body>
-    <!--Navigation bar-->
-    <div id="nav-placeholder"></div>
-    <script>$(function(){$("#nav-placeholder").load("nav.html"); console.log("navbar loaded")});</script>
+   
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="home">FileBox</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="home">Home</a></li>
+            <li class="active"><a href="upload">Upload</a></li>
+            <li><a href="download">Download</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <!-- <li><a href="#">Files</a></li>
+                <li><a href="#">Settings</a></li> -->
+                <li><a href="login">Log Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
     <div class="container">
       <h1 style="font-size: 50px">Upload</h1>
       <br>
       <img src="u.png" width=200 hight=100>
-      <h5>Here you are able to upload any types of file into your account and save them.</h5>
-      <p>Please pick a file you wish to upload</p>
+      <h4>Here you are able to upload any types of file into your account and save them.</h4>
+      <p>Pick a file you wish to upload.</p>
        <form action="upload/upf" method="post" enctype="multipart/form-data">
-          file(s) upload:<input type="file" name="myFile" multiple="multiple"><br>  <!-- multiple file upload:-->
+          <p>Upload file(s):</p>
+          <input type="file" name="myFile" multiple="multiple"><br>  <!-- multiple file upload:-->
           <input type="submit" value="Upload" name="file_upload" onclick="showAlert()">
           <script type="text/javascript">
             function showAlert()

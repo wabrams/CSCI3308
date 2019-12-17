@@ -14,13 +14,25 @@
   <body>
     <!--Navigation bar-->
 
-    <div id="nav-placeholder"></div>
-    <script>
-    $(function(){
-      $("#nav-placeholder").load("nav.html");
-    });
-    </script>
-    <!--end of Navigation bar-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="home">FileBox</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="home">Home</a></li>
+            <li ><a href="upload">Upload</a></li>
+            <li><a href="download">Download</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <!-- <li><a href="#">Files</a></li>
+                <li><a href="#">Settings</a></li> -->
+                <li><a class="active" href="login">Log Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>  <!--end of Navigation bar-->
 
     <div class="login-page">
 
@@ -29,11 +41,11 @@
         <form action="account/create" class="register-form" method = "post" enctype="multipart/form-data">
           <input  type="text" placeholder="username" name="username"/>
           <br>
-          <input id="passwordd" type="text" placeholder="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" required="required" name="pass" title="Must contain letter, upper case letter and at least 8 or more characters" required/>
+          <input id="passwordd" type="password" placeholder="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" required="required" name="pass" title="Must contain letter, upper case letter and at least 8 or more characters" required/>
           <br>
           <input type="text" placeholder="email" name="email"/>
           <br>
-          <button>Create Account</button><br>
+          <button><a href="home">Create Account</a></button><br>
           <!-- <p class="message">Already have an account? <a href="#" class="btn btn-danger">Login</a></p> -->
         </form>
          <h1>Login</h1>
@@ -42,7 +54,7 @@
           <br>
           <input type="password" placeholder="password">
           <br>
-          <button>Login</button>
+          <button><a href="home">Login</a></button>
         <!-- <p class="message">Not Signed up? <a href="#" class="btn btn-danger">Sign Up</a></p> -->
         </form>
       </div>
@@ -52,6 +64,7 @@
       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
       });
     </script>
+    <br>
     <footer id="main-footer" style = "text-align:center">
         <p>Copyrights &copy; 2019 FileBox</p>
     </footer>

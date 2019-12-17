@@ -11,24 +11,37 @@
   </head>
   <body>
     <!--Navigation bar-->
-    <div id="nav-placeholder"></div>
-    <script>
-    $(function(){
-      $("#nav-placeholder").load("nav.html");
-    });
-    </script>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="home">FileBox</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="home">Home</a></li>
+            <li><a href="upload">Upload</a></li>
+            <li><a href="download">Download</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <!-- <li><a href="#">Files</a></li>
+                <li><a href="#">Settings</a></li> -->
+                <li><a href="login">Log Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
     <!--end of Navigation bar-->
     <div class="container">
       <h1 style="font-size: 80px">FileBox</h1>
-        <h3>Welcome to FileBox, we hope you enjoy the ease of use for managing your files!</h3>
+        <h3>Welcome to FileBox! We hope you enjoy the ease of use for managing your files.</h3>
 
       <h1>Mission</h1>
         <p>To offer users a quick, lightweight file hosting service that is straightforward to use.</p>
       <h1>Services</h1>
         <ul>
+          <li>Create an account</li>
           <li>Upload files</li>
           <li>Download files</li>
-          <li>Manage your account</li>
         </ul>
         <br>
         <img src="pic1.png" width=200 hight=100>
