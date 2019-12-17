@@ -4,6 +4,13 @@ all project code/components
 
 ## Changelog
 0.0 initial front-end framework
+0.1 initial back-end framework
+0.2 run as node.js app, no back-end link
+0.3 functional single file upload
+0.4 temporary file download (initialized on server start)
+0.5 functional file download
+0.7 account creation enabled
+0.6 single and multiple file download
 
 ## Purpose
 open source, low functionality dropbox clone.
