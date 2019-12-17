@@ -230,14 +230,6 @@ var server = http.createServer(function(req, res)
       res.end(text);
     });
   }
-  else if(req.url == "/setting")
-  {
-    fs.readFile("web/setting.html", function(err, text)
-    {
-      res.setHeader("Content-Type", "text/html");
-      res.end(text);
-    });
-  }
   else if(req.url == "/login")
   {
     fs.readFile("web/login.html", function(err, text)
