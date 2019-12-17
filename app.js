@@ -109,7 +109,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/home" || req.url == "")
   {
-    fs.readFile("./web/index.html", function(err, text)
+    fs.readFile("/web/index.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
@@ -117,7 +117,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url.startsWith("/upload")) //this is also viable
   {
-    fs.readFile("./web/upload.html", function(err, text)
+    fs.readFile("/web/upload.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
@@ -125,7 +125,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url.startsWith("/box_icon.png")) //this is also viable
   {
-    fs.readFile("./web/box_icon.png", function(err, text)
+    fs.readFile("/web/box_icon.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
@@ -133,7 +133,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url.startsWith("/sad_face.png")) //this is also viable
   {
-    fs.readFile("./web/sad_face.png", function(err, text)
+    fs.readFile("/web/sad_face.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
@@ -141,7 +141,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url.startsWith("/pic1.png")) //this is also viable
   {
-    fs.readFile("./web/pic1.png", function(err, text)
+    fs.readFile("/web/pic1.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
@@ -149,7 +149,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url.startsWith("/u.png")) //this is also viable
   {
-    fs.readFile("./web/u.png", function(err, text)
+    fs.readFile("/web/u.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
@@ -157,7 +157,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url.startsWith("/d.png")) //this is also viable
   {
-    fs.readFile("./web/d.png", function(err, text)
+    fs.readFile("/web/d.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
@@ -165,7 +165,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url.startsWith("/a.png")) //this is also viable
   {
-    fs.readFile("./web/a.png", function(err, text)
+    fs.readFile("/web/a.png", function(err, text)
     {
       res.setHeader("Content-Type", 'image/png');
       res.end(text);
@@ -173,7 +173,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/download")// just pulls the base html
   {
-    fs.readFile("./web/download.html", function(err, text)
+    fs.readFile("/web/download.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
 
@@ -191,15 +191,15 @@ var server = http.createServer(function(req, res)
       //initialize the js file. This will overwrite the file sent to the previous request
       //Note: download0.js contains our actual js code for building the download table and is
       //unaffected by this process
-      fs.writeFileSync("./web/download.js", rows, (err) => {
+      fs.writeFileSync("/web/download.js", rows, (err) => {
         if (err) throw err;
         console.log('new download.js created w/ files data');
       });
-      fs.appendFileSync("./web/download.js", fs.readFileSync("./download0.js"), (err) => {
+      fs.appendFileSync("/web/download.js", fs.readFileSync("./download0.js"), (err) => {
         if (err) throw err;
         console.log('appended table pop script to download.js');
       });
-      fs.readFile("./web/download.js", function(err, text)
+      fs.readFile("/web/download.js", function(err, text)
       {
         res.setHeader("Content-Type", "text/javascript");
         res.end(text);
@@ -224,7 +224,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/files")
   {
-    fs.readFile("./web/files.html", function(err, text)
+    fs.readFile("/web/files.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
@@ -232,7 +232,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/setting")
   {
-    fs.readFile("./web/setting.html", function(err, text)
+    fs.readFile("/web/setting.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
@@ -240,7 +240,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/login")
   {
-    fs.readFile("./web/login.html", function(err, text)
+    fs.readFile("/web/login.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
@@ -248,7 +248,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/nav.html")
   {
-    fs.readFile("./web/nav.html", function(err, text)
+    fs.readFile("/web/nav.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
@@ -256,7 +256,7 @@ var server = http.createServer(function(req, res)
   }
   else if(req.url == "/account")
   {
-    fs.readFile("./web/account.html", function(err, text)
+    fs.readFile("/web/account.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
@@ -264,7 +264,7 @@ var server = http.createServer(function(req, res)
   }
   else  //default case
   {
-    fs.readFile("./web/error.html", function(err, text)
+    fs.readFile("/web/error.html", function(err, text)
     {
       res.setHeader("Content-Type", "text/html");
       res.end(text);
