@@ -9,14 +9,14 @@ var url = require('url');
 
 var mysql = require("mysql");
 var con = mysql.createConnection({
-  host: "localhost", //localhost
-  user: "root",
-  password: "filebox1234",
+  host: "hcm4e9frmbwfez47.cbetxkdyhwsb.us-east-1.rds.amazonaws.com", //JawsDB
+  user: "p7ie4453chmdx8rb",
+  password: "ncfr8oll0ltmm8ut",
 });
 con.connect(function(err) {
   if (err) throw err;
   console.log("connected to MySQL");
-  con.query("USE filebox;", function (err, result)
+  con.query("USE chh284y2ajkmd01v;", function (err, result)
   {
     if (err) throw err;
     console.log("connected to filebox DB");
