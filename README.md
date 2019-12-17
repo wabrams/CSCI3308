@@ -23,3 +23,10 @@ open source, low functionality dropbox clone.
 | Ford Mulligan | fpmull |
 | Jessie Ryce | jessieryce |
 | Isabell Deak | Isabelldeak |
+
+## Repo Organization/Structure
+- All frontend files are in the web folder (html,css,js)  
+- All files uploaded from FileBox are contained in the fb/public folder  
+- All imaged used in the application are in the img folder  
+
+## How to build/run/test our code
