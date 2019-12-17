@@ -11,8 +11,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema csci3308
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `filebox` DEFAULT CHARACTER SET utf8 ;
-USE `filebox` ;
+
+USE `chh284y2ajkmd01v` ;
 
 -- -----------------------------------------------------
 -- Table `csci3308`.`Users`
@@ -27,9 +27,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userID` INT NOT NULL AUTO_INCREMENT COMMENT 'GUID',
   PRIMARY KEY (`userID`));
 
-CREATE UNIQUE INDEX `email_UNIQUE` ON `filebox`.`users` (`email` ASC) VISIBLE;
+CREATE UNIQUE INDEX `email_UNIQUE` ON `chh284y2ajkmd01v`.`users` (`email` ASC) VISIBLE;
 
-CREATE UNIQUE INDEX `username_UNIQUE` ON `filebox`.`users` (`username` ASC) VISIBLE;
+CREATE UNIQUE INDEX `username_UNIQUE` ON `chh284y2ajkmd01v`.`users` (`username` ASC) VISIBLE;
 
 INSERT INTO users (username, email, password) VALUES ('public', 'test123@test.com', '1234567');
 
@@ -46,12 +46,12 @@ CREATE TABLE IF NOT EXISTS `files` (
   PRIMARY KEY (`fileID`, `owner`),
   CONSTRAINT `userID`
     FOREIGN KEY (`owner`)
-    REFERENCES `filebox`.`users` (`userID`)
+    REFERENCES `chh284y2ajkmd01v`.`users` (`userID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fileOwner_idx` ON `filebox`.`files` (`owner` ASC) VISIBLE;
+CREATE INDEX `fileOwner_idx` ON `chh284y2ajkmd01v`.`files` (`owner` ASC) VISIBLE;
 
 INSERT INTO files (name) VALUES ("testA.txt");
 
