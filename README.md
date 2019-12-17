@@ -10,7 +10,7 @@ all project code/components
 0.4 temporary file download (initialized on server start)  
 0.5 functional file download  
 0.6 account creation enabled  
-0.7 single and multiple file download  
+1.0 single and multiple file download  
 
 ## Purpose
 open source, low functionality dropbox clone.
