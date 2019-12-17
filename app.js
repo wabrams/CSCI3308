@@ -49,16 +49,16 @@ var server = http.createServer(function(req, res)
       {
          var oldpath = files.myFile.path;
          var newpath = "fb/public/" + files.myFile.name;
-         fs.rename(oldpath, newpath, function (err)
-         {
-          if (err) throw err;
+         // fs.rename(oldpath, newpath, function (err)
+         // {
+         //  if (err) throw err;
           con.query("INSERT INTO files (name) VALUES " +  " ('" + files.myFile.name + "');", function (err, result)
-        {
+          {
          if (err) throw err;
          console.log("added files to DB");
         });
 
-         });
+         // });
 
       }
       else
@@ -74,12 +74,11 @@ var server = http.createServer(function(req, res)
 
              var oldpath = files.myFile[i].path;
              var newpath = "fb/public/" + files.myFile[i].name;
-             fs.rename(oldpath, newpath, function (err)
-             {
-              if (err) throw err;
-              // console.log("added file to FS");
-             });
-
+             // fs.rename(oldpath, newpath, function (err)
+             // {
+             //  if (err) throw err;
+             //  // console.log("added file to FS");
+             // });
           }
 
           con.query("INSERT INTO files (name) VALUES " + queryValues + ";", function (err, result)
