@@ -45,7 +45,8 @@ var server = http.createServer(function(req, res)
       console.log(files);
 
 
-      if(!Array.isArray(files.myFile)){
+      if(!Array.isArray(files.myFile))
+      {
          var oldpath = files.myFile.path;
          var newpath = "fb/public/" + files.myFile.name;
          fs.rename(oldpath, newpath, function (err)
@@ -60,9 +61,10 @@ var server = http.createServer(function(req, res)
          });
 
       }
-      else{
-          queryValues = "";
-         for(i = 0; i < files.myFile.length;i++)
+      else
+      {
+        queryValues = "";
+        for(i = 0; i < files.myFile.length;i++)
          {
         // ('name') ,
              queryValues += " ('" + files.myFile[i].name + "')";
